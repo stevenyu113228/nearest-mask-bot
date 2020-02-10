@@ -28,7 +28,7 @@ def get_mask(my_x,my_y,adult = True):
     df2 = df2.dropna(subset=['TGOS X'])
     df2 = df2.reset_index()
     
-    k = '成人口罩總剩餘數' if adult == True else '兒童口罩剩餘數'
+    k = '成人口罩剩餘數' if adult == True else '兒童口罩剩餘數'
     available = df2[df2[k]>0]
     
     distance  = []
@@ -163,7 +163,7 @@ def root():
                                 },
                                 {
                                     "type": "span",
-                                    "text": str(i['成人口罩總剩餘數'])
+                                    "text": str(i['成人口罩剩餘數'])
                                 }
                                 ],
                                 "margin": "md"
