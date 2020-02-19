@@ -28,6 +28,10 @@ def get_mask(my_x,my_y,adult = True):
     df2 = df2.dropna(subset=['TGOS X'])
     df2 = df2.reset_index()
     
+    
+    df11 = pandas.read_csv("http://data.nhi.gov.tw/resource/Opendata/%E5%85%A8%E6%B0%91%E5%81%A5%E5%BA%B7%E4%BF%9D%E9%9A%AA%E7%89%B9%E7%B4%84%E9%99%A2%E6%89%80%E5%9B%BA%E5%AE%9A%E6%9C%8D%E5%8B%99%E6%99%82%E6%AE%B5.csv")
+    df2 = df2.set_index('醫事機構代碼').join(df11[['醫事機構代碼','看診備註']].set_index('醫事機構代碼'), lsuffix='_caller', rsuffix='_other')
+    
     k = '成人口罩剩餘數' if adult == True else '兒童口罩剩餘數'
     available = df2[df2[k]>0]
     
@@ -187,9 +191,28 @@ def root():
                                 }
                                 ],
                                 "margin": "md"
+                            },                            {
+                                "type": "text",
+                                "text": "地址：",
+                                "wrap": True,
+                                "color": "#8c8c8c",
+                                "size": "xs",
+                                "flex": 5,
+                                "contents": [
+                                {
+                                    "type": "span",
+                                    "text": "備註：",
+                                    "color": "#000000"
+                                },
+                                {
+                                    "type": "span",
+                                    "text": str(i['看診備註'])
+                                }
+                                ],
+                                "margin": "md"
                             }
-                            ],
-                            "margin": "lg"
+                                
+                            ]
                         }
                         ],
                         "spacing": "sm",
